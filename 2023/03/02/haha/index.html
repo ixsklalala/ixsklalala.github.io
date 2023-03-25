@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="这是一个一级标题">
+    <meta name="description" content="传统JavaWeb开发的困惑首先我们来看一段用户注册的示例代码： 12345678910111213141516171819202122232425&#x2F;** 用户注册业务方法 *&#x2F;public void regist(User user) &amp;#123;  try &amp;#123;    &#x2F;&#x2F; 开启事务    DaoUtils.openTransaction();    &#x2F;&#x2F; 获取UserDao来执行用户">
 <meta property="og:type" content="article">
-<meta property="og:title" content="haha">
+<meta property="og:title" content="Spring提出及简单使用">
 <meta property="og:url" content="http://example.com/2023/03/02/haha/index.html">
 <meta property="og:site_name" content="ixsklalala">
-<meta property="og:description" content="这是一个一级标题">
+<meta property="og:description" content="传统JavaWeb开发的困惑首先我们来看一段用户注册的示例代码： 12345678910111213141516171819202122232425&#x2F;** 用户注册业务方法 *&#x2F;public void regist(User user) &amp;#123;  try &amp;#123;    &#x2F;&#x2F; 开启事务    DaoUtils.openTransaction();    &#x2F;&#x2F; 获取UserDao来执行用户">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ixsklalala/images/haha.jpg!1">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ixsklalala/images/20230325155023.png">
 <meta property="article:published_time" content="2023-03-02T14:36:15.000Z">
-<meta property="article:modified_time" content="2023-03-25T07:20:54.919Z">
+<meta property="article:modified_time" content="2023-03-25T07:53:40.627Z">
 <meta property="article:author" content="ixsk">
 <meta property="article:tag" content="Java, 服务端研发">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ixsklalala/images/haha.jpg!1">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ixsklalala/images/20230325155023.png">
     
     
       
@@ -39,7 +39,7 @@
       
     
     <!-- title -->
-    <title>haha</title>
+    <title>Spring提出及简单使用</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -92,21 +92,21 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/03/02/haha/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/02/haha/&text=haha"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/02/haha/&is_video=false&description=haha"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=haha&body=Check out this article: http://example.com/2023/03/02/haha/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/02/haha/&name=haha&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/02/haha/&t=haha"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/02/haha/&text=Spring提出及简单使用"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/02/haha/&is_video=false&description=Spring提出及简单使用"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring提出及简单使用&body=Check out this article: http://example.com/2023/03/02/haha/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/02/haha/&name=Spring提出及简单使用&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/02/haha/&t=Spring提出及简单使用"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">这是一个一级标题</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9FJavaWeb%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%B0%E6%83%91"><span class="toc-number">1.</span> <span class="toc-text">传统JavaWeb开发的困惑</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -118,7 +118,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        haha
+        Spring提出及简单使用
     </h1>
 
 
@@ -145,8 +145,10 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p><img src="https://cdn.jsdelivr.net/gh/ixsklalala/images/haha.jpg!1"></p>
-<h1 id="这是一个一级标题"><a href="#这是一个一级标题" class="headerlink" title="这是一个一级标题"></a>这是一个一级标题</h1>
+    <h1 id="传统JavaWeb开发的困惑"><a href="#传统JavaWeb开发的困惑" class="headerlink" title="传统JavaWeb开发的困惑"></a>传统JavaWeb开发的困惑</h1><p>首先我们来看一段用户注册的示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 用户注册业务方法 */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">regist</span><span class="params">(User user)</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 开启事务</span></span><br><span class="line">    DaoUtils.openTransaction();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取UserDao来执行用户插入操作</span></span><br><span class="line">    <span class="type">UserDao</span> <span class="variable">userDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDaoImpl</span>();</span><br><span class="line">    userDao.addUser(user);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用户注册成功后，想操作日志表中添加一条记录</span></span><br><span class="line">    <span class="type">UserLogDao</span> <span class="variable">userLogDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserLogDaoImpl</span>();</span><br><span class="line">    userLogDao.recordUserRegist(user);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    DaoUtils.commit();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception ignore) &#123;</span><br><span class="line">    <span class="comment">// 回滚事务</span></span><br><span class="line">    DaoUtils.rollBack();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向异常日志中插入一条记录</span></span><br><span class="line">    <span class="type">ExceptionLogDao</span> <span class="variable">exceptionLogDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExceptionLogDaoImpl</span>();</span><br><span class="line">    exceptionLogDao.recordExceptionLog(<span class="built_in">this</span>, ignore);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>从上述示例代码可以看出，service层业务方法中，需要使用dao层中对象，所以直接new一个对象来调对应方法来操作，但是这样service层和dao层耦合太紧密，同样接口和实现也耦合比较紧，违背了开发的原则。如何解决这个问题呢？可以参考工厂模式的思想，程序代码中不要手动new对象，由第三方根据要求为程序提供需要的对象<br><img src="https://cdn.jsdelivr.net/gh/ixsklalala/images/20230325155023.png"></p>
+
   </div>
 </article>
 
@@ -171,22 +173,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%80%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">这是一个一级标题</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9FJavaWeb%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%B0%E6%83%91"><span class="toc-number">1.</span> <span class="toc-text">传统JavaWeb开发的困惑</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/03/02/haha/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/02/haha/&text=haha"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/02/haha/&is_video=false&description=haha"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=haha&body=Check out this article: http://example.com/2023/03/02/haha/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/02/haha/&title=haha"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/02/haha/&name=haha&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/02/haha/&t=haha"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/02/haha/&text=Spring提出及简单使用"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/02/haha/&is_video=false&description=Spring提出及简单使用"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring提出及简单使用&body=Check out this article: http://example.com/2023/03/02/haha/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/02/haha/&title=Spring提出及简单使用"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/02/haha/&name=Spring提出及简单使用&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/02/haha/&t=Spring提出及简单使用"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

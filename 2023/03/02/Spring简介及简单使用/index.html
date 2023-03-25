@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="传统JavaWeb开发的困惑首先我们来看一段用户注册的示例代码： 12345678910111213141516171819202122232425&#x2F;** 用户注册业务方法 *&#x2F;public void regist(User user) &amp;#123;  try &amp;#123;    &#x2F;&#x2F; 开启事务    DaoUtils.openTransaction();    &#x2F;&#x2F; 获取UserDao来执行用户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring简介及简单使用">
+<meta property="og:url" content="http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="ixsklalala">
+<meta property="og:description" content="传统JavaWeb开发的困惑首先我们来看一段用户注册的示例代码： 12345678910111213141516171819202122232425&#x2F;** 用户注册业务方法 *&#x2F;public void regist(User user) &amp;#123;  try &amp;#123;    &#x2F;&#x2F; 开启事务    DaoUtils.openTransaction();    &#x2F;&#x2F; 获取UserDao来执行用户">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325163753.png">
+<meta property="og:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325164954.png">
+<meta property="og:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325173331.png">
+<meta property="og:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325174234.png">
+<meta property="og:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325175607.png">
+<meta property="og:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325180728.png">
+<meta property="og:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325181530.png">
+<meta property="article:published_time" content="2023-03-02T14:36:15.000Z">
+<meta property="article:modified_time" content="2023-03-25T10:19:48.906Z">
+<meta property="article:author" content="ixsk">
+<meta property="article:tag" content="Java, 服务端研发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325163753.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Spring简介及简单使用</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/03/02/hello-world/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&text=Spring简介及简单使用"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&is_video=false&description=Spring简介及简单使用"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring简介及简单使用&body=Check out this article: http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&name=Spring简介及简单使用&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&t=Spring简介及简单使用"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9FJavaWeb%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%B0%E6%83%91"><span class="toc-number">1.</span> <span class="toc-text">传统JavaWeb开发的困惑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IoC%E3%80%81DI%E5%92%8CAOP%E6%80%9D%E6%83%B3%E6%8F%90%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">IoC、DI和AOP思想提出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AF%9E%E7%94%9F"><span class="toc-number">3.</span> <span class="toc-text">Spring框架的诞生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">Spring概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">Spring简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BeanFactory"><span class="toc-number">3.2.1.</span> <span class="toc-text">BeanFactory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ApplicationContext"><span class="toc-number">3.2.2.</span> <span class="toc-text">ApplicationContext</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Spring简介及简单使用
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ixsk</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-03-02T14:36:15.000Z" itemprop="datePublished">2023-03-02</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="传统JavaWeb开发的困惑"><a href="#传统JavaWeb开发的困惑" class="headerlink" title="传统JavaWeb开发的困惑"></a>传统JavaWeb开发的困惑</h2><p>首先我们来看一段用户注册的示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 用户注册业务方法 */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">regist</span><span class="params">(User user)</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 开启事务</span></span><br><span class="line">    DaoUtils.openTransaction();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取UserDao来执行用户插入操作</span></span><br><span class="line">    <span class="type">UserDao</span> <span class="variable">userDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDaoImpl</span>();</span><br><span class="line">    userDao.addUser(user);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用户注册成功后，想操作日志表中添加一条记录</span></span><br><span class="line">    <span class="type">UserLogDao</span> <span class="variable">userLogDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserLogDaoImpl</span>();</span><br><span class="line">    userLogDao.recordUserRegist(user);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    DaoUtils.commit();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception ignore) &#123;</span><br><span class="line">    <span class="comment">// 回滚事务</span></span><br><span class="line">    DaoUtils.rollBack();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向异常日志中插入一条记录</span></span><br><span class="line">    <span class="type">ExceptionLogDao</span> <span class="variable">exceptionLogDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExceptionLogDaoImpl</span>();</span><br><span class="line">    exceptionLogDao.recordExceptionLog(<span class="built_in">this</span>, ignore);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>从上述示例代码可以看出，service层业务方法中，需要使用dao层中对象，所以直接new一个对象来调对应方法来操作，但是这样service层和dao层耦合太紧密，同样接口和实现也耦合比较紧，违背了开发的原则。如何解决这个问题呢？可以参考工厂模式的思想，程序代码中不要手动new对象，由第三方根据要求为程序提供需要的对象，如下图所示：<br><img src="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325163753.png" alt="解决思路1"><br>除上述问题之外，还有一个问题，通用的事务功能耦合在业务代码中，通用的日志功能耦合在业务代码中。解决思路同上述，程序代码中不再手动new对象，由第三方根据要求为程序提供需要的对象的代理对象，该代理对象为增强后的对象，具备日志、事务等功能，如下图所示：<br><img src="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325164954.png" alt="解决思路2"></p>
+<h2 id="IoC、DI和AOP思想提出"><a href="#IoC、DI和AOP思想提出" class="headerlink" title="IoC、DI和AOP思想提出"></a>IoC、DI和AOP思想提出</h2><ul>
+<li>IoC：Inversion of Control，控制反转，强调的是原来在程序中创建Bean的权利反转给第三方</li>
+<li>DI：Dependency Injection，依赖注入，强调的是Bean之前的关系，这种关系由第三方复制去设置</li>
+<li>AOP：Aspect Oriented Programming，面向切面编程，功能的横向抽取，主要的实现方式就是Proxy</li>
+</ul>
+<h2 id="Spring框架的诞生"><a href="#Spring框架的诞生" class="headerlink" title="Spring框架的诞生"></a>Spring框架的诞生</h2><h3 id="Spring概述"><a href="#Spring概述" class="headerlink" title="Spring概述"></a>Spring概述</h3><p>Spring是一个开源的轻量级Java开发应用框架，可以简化企业级应用开发。Spring解决了开发者在JavaEE开发中遇到的许多常见的问题，提供了功能强大的IoC、AOP及Web MVC等工。是当前企业中Java开发几乎不可缺少的框架之一。Spring的生态极其完善，不管是Spring哪个领域的解决方案都是依附于Spring基础框架的<br>Spring的官网：<a target="_blank" rel="noopener" href="http://www.spring.io/">www.spring.io</a><br>Spring框架历史：</p>
+<ul>
+<li><p>Jsp默默抗下所有</p>
+</li>
+<li><p>MVC+三层架构分工明确，但开发成本极其高</p>
+</li>
+<li><p>EJB重量级框架出现，走出一个困境，又走进另一个困境</p>
+</li>
+<li><p>Spring春天到来，随之，SSH风生水起</p>
+</li>
+<li><p>Spring稳住地位，SSM开始上位</p>
+</li>
+<li><p>Spring本着“拿来主义”的思维快速发展，生态不断健全</p>
+</li>
+<li><p>SpringBoot又一里程碑崛起，把“约定大于配置”思想玩的炉火纯青</p>
+</li>
+<li><p>SpringCloud打包了微服务众多解决方案，应对互联网项目更加简单<br><img src="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325173331.png" alt="Spring技术栈图示"></p>
+</li>
+<li><p>Data Access：数据访问</p>
+</li>
+<li><p>Data Integration：数据集成</p>
+</li>
+<li><p>Web：Web开发</p>
+</li>
+<li><p>AOP：面向切面变成</p>
+</li>
+<li><p>Aspects：AOP思想实现</p>
+</li>
+<li><p>Core Container：核心容器</p>
+</li>
+<li><p>Test：单元测试与集成测试</p>
+</li>
+</ul>
+<h3 id="Spring简单使用"><a href="#Spring简单使用" class="headerlink" title="Spring简单使用"></a>Spring简单使用</h3><h4 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h4><p><img src="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325174234.png" alt="Spring BeanFactory开发步骤"></p>
+<ol>
+<li>导入Spring的jar包<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>定义UserService接口及其实现类UserServiceImpl<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xsk.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xsk.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xsk.service.UserService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建beans.xml配置文件，将UserServiceImpl的信息配置到该xml中<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 配置UserServiceImpl --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.xsk.service.impl.UserServiceImpl&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>编写测试代码，创建BeanFactory，加载配置文件，获取UserService实例对象<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xsk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xsk.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.support.DefaultListableBeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.XmlBeanDefinitionReader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BeanFactoryTest</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 创建工厂对象</span></span><br><span class="line">    <span class="type">DefaultListableBeanFactory</span> <span class="variable">beanFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultListableBeanFactory</span>();</span><br><span class="line">    <span class="comment">// 2. 创建一个读取器（读取beans.xml文件）</span></span><br><span class="line">    <span class="type">XmlBeanDefinitionReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">XmlBeanDefinitionReader</span>(beanFactory);</span><br><span class="line">    <span class="comment">// 3. 读取器读取配置文件给工厂</span></span><br><span class="line">    reader.loadBeanDefinitions(<span class="string">&quot;beans.xml&quot;</span>);</span><br><span class="line">    <span class="comment">// 4. 根据id获取Bean实例对象</span></span><br><span class="line">    <span class="type">UserService</span> <span class="variable">userService</span> <span class="operator">=</span> (UserService) beanFactory.getBean(<span class="string">&quot;userService&quot;</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(userService);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325175607.png" alt="UserService对象获取运行结果"></li>
+<li>配置UserDao并注入到UserService中<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 配置UserServiceImpl --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.xsk.service.impl.UserServiceImpl&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 两个userDao含义不同，前者为UserService中属性名，后者为BeanFactory中bean id --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;userDao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 配置UserDaoImpl --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.xsk.dao.impl.UserDaoImpl&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xsk.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xsk.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> com.xsk.service.UserService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// BeanFactory去调用该方法，从容器中获得userDao对象设置到此处</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setUserDao</span><span class="params">(UserDao userDao)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.userDao = userDao;</span><br><span class="line">    System.out.println(<span class="string">&quot;BeanFactory调用该方法获得userDao对象设置到此处，userDao: &quot;</span> + userDao);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+执行前述main方法，打印结果如下：<br><img src="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325180728.png" alt="UserDao注入UserService运行结果"><br><img src="https://blog-images-github-io.oss-cn-beijing.aliyuncs.com/images/20230325181530.png" alt="debug查看注入结果"></li>
+</ol>
+<h4 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h4>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9FJavaWeb%E5%BC%80%E5%8F%91%E7%9A%84%E5%9B%B0%E6%83%91"><span class="toc-number">1.</span> <span class="toc-text">传统JavaWeb开发的困惑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IoC%E3%80%81DI%E5%92%8CAOP%E6%80%9D%E6%83%B3%E6%8F%90%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">IoC、DI和AOP思想提出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AF%9E%E7%94%9F"><span class="toc-number">3.</span> <span class="toc-text">Spring框架的诞生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">Spring概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">Spring简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BeanFactory"><span class="toc-number">3.2.1.</span> <span class="toc-text">BeanFactory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ApplicationContext"><span class="toc-number">3.2.2.</span> <span class="toc-text">ApplicationContext</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&text=Spring简介及简单使用"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&is_video=false&description=Spring简介及简单使用"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring简介及简单使用&body=Check out this article: http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&title=Spring简介及简单使用"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&name=Spring简介及简单使用&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/03/02/Spring%E7%AE%80%E4%BB%8B%E5%8F%8A%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/&t=Spring简介及简单使用"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    ixsk
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
